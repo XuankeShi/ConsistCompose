@@ -71,7 +71,7 @@ def main():
 
     print("Generating image...")
     # Call generate with the prompt; images not needed for generate mode
-    generated_image_path = model.generate(question=args.prompt, images=None, mode=args.mode, vis_bbox=True)
+    generated_image_path = model.generate(question=args.prompt, images=None, mode=args.mode, vis_bbox=True, resize_short_edge=768)
 
     print("-" * 50)
     print("Done!")

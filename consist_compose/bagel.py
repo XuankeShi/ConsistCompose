@@ -301,7 +301,7 @@ class ConsistComposeBagelModel(Model):
         image.save(out_path)
         return str(out_path)
 
-    def generate(self, question: str, images: list[str] | None = None, mode: str = None, vis_bbox=False, **kwargs):
+    def generate(self, question: str, images: list[str] | None = None, mode: str = None, vis_bbox=False, resize_short_edge: int = 512, **kwargs):
 
         if mode is None:
             raise ValueError(f"mode must be specified in generate() method (supported modes: {list(BASE_PARAMS.keys())})")
@@ -331,7 +331,7 @@ class ConsistComposeBagelModel(Model):
                 img_path = images[i]
                 try:
                     image = Image.open(img_path).convert("RGB")
-                    image_resized = resize_image_to_short_edge(image, 512)
+                    image_resized = resize_image_to_short_edge(image, resize_short_edge)
                     input_lists.append(image_resized)
                     input_img_paths.append(img_path)
                 except Exception as e:
